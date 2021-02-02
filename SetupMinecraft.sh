@@ -46,14 +46,10 @@ fi
 
 # Install dependencies required to run Minecraft server in the background
 echo "Installing screen, unzip, sudo, net-tools, wget.."
-if [ ! -n "`which sudo`" ]; then
-  apt-get update && apt-get install sudo -y
-fi
-sudo apt-get update
-sudo apt-get install screen unzip wget -y
-sudo apt-get install net-tools -y
-sudo apt-get install libcurl4 -y
-sudo apt-get install openssl -y
+sudo dnf install screen unzip wget -y
+sudo dnf install net-tools -y
+sudo dnf install libcurl4 -y
+sudo dnf install openssl -y
 
 # Check to see if Minecraft server main directory already exists
 cd ~
@@ -101,28 +97,28 @@ if [ -d "$ServerName" ]; then
 
   # Download start.sh from repository
   echo "Grabbing start.sh from repository..."
-  wget -O start.sh https://raw.githubusercontent.com/TheRemote/MinecraftBedrockServer/master/start.sh
+  wget -O start.sh https://raw.githubusercontent.com/natewillis/MinecraftBedrockServer/master/start.sh
   chmod +x start.sh
   sed -i "s:dirname:$DirName:g" start.sh
   sed -i "s:servername:$ServerName:g" start.sh
 
   # Download stop.sh from repository
   echo "Grabbing stop.sh from repository..."
-  wget -O stop.sh https://raw.githubusercontent.com/TheRemote/MinecraftBedrockServer/master/stop.sh
+  wget -O stop.sh https://raw.githubusercontent.com/natewillis/MinecraftBedrockServer/master/stop.sh
   chmod +x stop.sh
   sed -i "s:dirname:$DirName:g" stop.sh
   sed -i "s:servername:$ServerName:g" stop.sh
 
   # Download restart.sh from repository
   echo "Grabbing restart.sh from repository..."
-  wget -O restart.sh https://raw.githubusercontent.com/TheRemote/MinecraftBedrockServer/master/restart.sh
+  wget -O restart.sh https://raw.githubusercontent.com/natewillis/MinecraftBedrockServer/master/restart.sh
   chmod +x restart.sh
   sed -i "s:dirname:$DirName:g" restart.sh
   sed -i "s:servername:$ServerName:g" restart.sh
 
   # Download fixpermissions.sh from repository
   echo "Grabbing fixpermissions.sh from repository..."
-  wget -O fixpermissions.sh https://raw.githubusercontent.com/TheRemote/MinecraftBedrockServer/master/fixpermissions.sh
+  wget -O fixpermissions.sh https://raw.githubusercontent.com/natewillis/MinecraftBedrockServer/master/fixpermissions.sh
   chmod +x fixpermissions.sh
   sed -i "s:dirname:$DirName:g" fixpermissions.sh
   sed -i "s:servername:$ServerName:g" fixpermissions.sh
@@ -130,7 +126,7 @@ if [ -d "$ServerName" ]; then
 
   # Update minecraft server service
   echo "Configuring Minecraft $ServerName service..."
-  sudo wget -O /etc/systemd/system/$ServerName.service https://raw.githubusercontent.com/TheRemote/MinecraftBedrockServer/master/minecraftbe.service
+  sudo wget -O /etc/systemd/system/$ServerName.service https://raw.githubusercontent.com/natewillis/MinecraftBedrockServer/master/minecraftbe.service
   sudo chmod +x /etc/systemd/system/$ServerName.service
   sudo sed -i "s:userxname:$UserName:g" /etc/systemd/system/$ServerName.service
   sudo sed -i "s:dirname:$DirName:g" /etc/systemd/system/$ServerName.service
@@ -254,28 +250,28 @@ unzip -o "downloads/$DownloadFile"
 
 # Download start.sh from repository
 echo "Grabbing start.sh from repository..."
-wget -O start.sh https://raw.githubusercontent.com/TheRemote/MinecraftBedrockServer/master/start.sh
+wget -O start.sh https://raw.githubusercontent.com/natewillis/MinecraftBedrockServer/master/start.sh
 chmod +x start.sh
 sed -i "s:dirname:$DirName:g" start.sh
 sed -i "s:servername:$ServerName:g" start.sh
 
 # Download stop.sh from repository
 echo "Grabbing stop.sh from repository..."
-wget -O stop.sh https://raw.githubusercontent.com/TheRemote/MinecraftBedrockServer/master/stop.sh
+wget -O stop.sh https://raw.githubusercontent.com/natewillis/MinecraftBedrockServer/master/stop.sh
 chmod +x stop.sh
 sed -i "s:dirname:$DirName:g" stop.sh
 sed -i "s:servername:$ServerName:g" stop.sh
 
 # Download restart.sh from repository
 echo "Grabbing restart.sh from repository..."
-wget -O restart.sh https://raw.githubusercontent.com/TheRemote/MinecraftBedrockServer/master/restart.sh
+wget -O restart.sh https://raw.githubusercontent.com/natewillis/MinecraftBedrockServer/master/restart.sh
 chmod +x restart.sh
 sed -i "s:dirname:$DirName:g" restart.sh
 sed -i "s:servername:$ServerName:g" restart.sh
 
 # Download fixpermissions.sh from repository
 echo "Grabbing fixpermissions.sh from repository..."
-wget -O fixpermissions.sh https://raw.githubusercontent.com/TheRemote/MinecraftBedrockServer/master/fixpermissions.sh
+wget -O fixpermissions.sh https://raw.githubusercontent.com/natewillis/MinecraftBedrockServer/master/fixpermissions.sh
 chmod +x fixpermissions.sh
 sed -i "s:dirname:$DirName:g" fixpermissions.sh
 sed -i "s:servername:$ServerName:g" fixpermissions.sh
@@ -283,7 +279,7 @@ sed -i "s:userxname:$UserName:g" fixpermissions.sh
 
 # Service configuration
 echo "Configuring Minecraft $ServerName service..."
-sudo wget -O /etc/systemd/system/$ServerName.service https://raw.githubusercontent.com/TheRemote/MinecraftBedrockServer/master/minecraftbe.service
+sudo wget -O /etc/systemd/system/$ServerName.service https://raw.githubusercontent.com/natewillis/MinecraftBedrockServer/master/minecraftbe.service
 sudo chmod +x /etc/systemd/system/$ServerName.service
 sudo sed -i "s:userxname:$UserName:g" /etc/systemd/system/$ServerName.service
 sudo sed -i "s:dirname:$DirName:g" /etc/systemd/system/$ServerName.service
